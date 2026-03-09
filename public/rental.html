@@ -1,0 +1,465 @@
+﻿<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Rental de Equipo — Vértice Visual</title>
+    <meta name="description"
+        content="Alquila equipo audiovisual profesional con Vértice Visual: cámaras, estabilizadores, accesorios y más en Santander." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#c59a6d", "petroleum": "#264653", "background-dark": "#1d1915" }, fontFamily: { "sans": ["Work Sans", "sans-serif"], "serif": ["Playfair Display", "Georgia", "serif"] } } } }
+    </script>
+    <style>
+        body {
+            font-family: "Work Sans", sans-serif;
+            background-color: #1d1915
+        }
+
+        .nav-link {
+            position: relative
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #c59a6d;
+            transition: width .3s ease
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%
+        }
+
+        .nav-link.active {
+            color: #c59a6d
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .7s ease, transform .7s ease
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .item-card {
+            transition: all .3s ease;
+            border: 1px solid rgba(197, 154, 109, 0.1)
+        }
+
+        .item-card:hover {
+            border-color: rgba(197, 154, 109, 0.4);
+            transform: translateY(-4px)
+        }
+    </style>
+</head>
+
+<body class="text-slate-100 min-h-screen">
+
+    <header class="w-full border-b border-white/10 px-6 py-5 lg:px-20 backdrop-blur-sm sticky top-0 z-50"
+        style="background:rgba(29,25,21,0.9)">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="images/logo-icon.svg" alt="Logo Vértice Visual" class="w-8 h-8" />
+                <span class="text-xl font-bold tracking-tight uppercase">Vértice Visual</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="nav-link text-sm font-medium text-white/80" href="index.html">Home</a>
+                <a class="nav-link text-sm font-medium text-white/80" href="proyectos.html">Proyectos</a>
+                <a class="nav-link active text-sm font-medium" href="rental.html" style="color:#c59a6d">Rental</a>
+                <a class="nav-link text-sm font-medium text-white/80" href="nosotros.html">Nosotros</a>
+                <a class="nav-link text-sm font-medium text-white/80" href="contacto.html">Contacto</a>
+            </nav>
+            <button id="menu-toggle" class="md:hidden text-white"><span
+                    class="material-symbols-outlined text-3xl">menu</span></button>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="fixed inset-0 z-40 flex-col items-center justify-center gap-8 hidden"
+        style="background:rgba(29,25,21,0.98)">
+        <button id="menu-close" class="absolute top-6 right-6 text-white"><span
+                class="material-symbols-outlined text-3xl">close</span></button>
+        <nav class="flex flex-col items-center gap-8 mt-16">
+            <a class="text-white text-2xl font-bold tracking-widest uppercase" href="index.html">Home</a>
+            <a class="text-white text-2xl font-bold tracking-widest uppercase" href="proyectos.html">Proyectos</a>
+            <a class="text-2xl font-bold tracking-widest uppercase" style="color:#c59a6d" href="rental.html">Rental</a>
+            <a class="text-white text-2xl font-bold tracking-widest uppercase" href="nosotros.html">Nosotros</a>
+            <a class="text-white text-2xl font-bold tracking-widest uppercase" href="contacto.html">Contacto</a>
+        </nav>
+    </div>
+
+    <!-- Hero -->
+    <section class="relative py-28 px-6 text-center overflow-hidden">
+        <div class="absolute inset-0 opacity-10"
+            style="background:radial-gradient(circle at 50% 50%,#c59a6d,transparent 70%)"></div>
+        <div class="relative z-10 max-w-3xl mx-auto">
+            <span class="font-bold uppercase tracking-[0.3em] text-xs mb-4 block" style="color:#c59a6d">Alquiler
+                Profesional</span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6" style="font-family:'Playfair Display',serif">Equipo para
+                <span class="italic" style="color:#c59a6d">tu visión</span>
+            </h1>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">Accede a equipo cinematográfico
+                profesional de alto nivel. Todo lo que necesitas para llevar tu producción al siguiente escalón.</p>
+            <a href="https://wa.me/573195025967"
+                class="inline-flex items-center gap-2 mt-8 font-bold px-8 py-3 uppercase tracking-[0.2em] text-sm transition-colors"
+                style="background:#c59a6d;color:#1d1915">
+                <span class="material-symbols-outlined text-sm">chat</span> Consultar disponibilidad
+            </a>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-6 md:px-12 pb-20">
+
+        <!-- Section 1: Iluminación -->
+        <section class="mb-20 scroll-reveal">
+            <div class="flex items-center gap-4 mb-8 pb-4" style="border-bottom:1px solid rgba(197,154,109,0.1)">
+                <span class="material-symbols-outlined" style="color:#c59a6d">light_mode</span>
+                <h2 class="text-2xl font-bold uppercase tracking-widest">Iluminación</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Youngnuo YN660 RGB -->
+                <div class="item-card group flex flex-col rounded-xl overflow-hidden" style="background:#12100e">
+                    <div class="aspect-square bg-black overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                            src="images/youngnuo-yn660.png" alt="Youngnuo YN660 RGB" />
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h4 class="text-xl font-bold mb-2">Youngnuo YN660 RGB</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1 italic">Panel LED tipo sable con control RGB
+                            completo. Ofrece 2500K–8500K de temperatura de color y alta portabilidad, ideal para
+                            iluminación dinámica y creativa en campo.</p>
+                        <a class="inline-block py-3 px-4 text-center text-xs font-bold uppercase tracking-widest rounded-lg transition-all"
+                            style="border:1px solid #c59a6d;color:#c59a6d"
+                            onmouseover="this.style.background='#c59a6d';this.style.color='#1d1915'"
+                            onmouseout="this.style.background='';this.style.color='#c59a6d'"
+                            href="https://wa.me/573195025967?text=Hola,%20quiero%20consultar%20sobre%20el%20Youngnuo%20YN660%20RGB">Consultar
+                            disponibilidad</a>
+                    </div>
+                </div>
+
+                <!-- Neewer NW660 -->
+                <div class="item-card group flex flex-col rounded-xl overflow-hidden" style="background:#12100e">
+                    <div class="aspect-square bg-black overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                            src="images/neewer-nw660.png" alt="Neewer NW660" />
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h4 class="text-xl font-bold mb-2">Luz Neewer NW660</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1 italic">Panel LED de 660 leds con temperatura de
+                            color ajustable entre 3200K y 5600K. Perfecto para iluminación de entrevistas, retratos y
+                            sets de grabación.</p>
+                        <a class="inline-block py-3 px-4 text-center text-xs font-bold uppercase tracking-widest rounded-lg transition-all"
+                            style="border:1px solid #c59a6d;color:#c59a6d"
+                            onmouseover="this.style.background='#c59a6d';this.style.color='#1d1915'"
+                            onmouseout="this.style.background='';this.style.color='#c59a6d'"
+                            href="https://wa.me/573195025967?text=Hola,%20quiero%20consultar%20sobre%20la%20Luz%20Neewer%20NW660">Consultar
+                            disponibilidad</a>
+                    </div>
+                </div>
+
+                <!-- Ulanzi 40W RGB COB -->
+                <div class="item-card group flex flex-col rounded-xl overflow-hidden" style="background:#12100e">
+                    <div class="aspect-square bg-black overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                            src="images/ulanzi-rgb-cob.png" alt="Ulanzi 40W LED COB RGB" />
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h4 class="text-xl font-bold mb-2">Luz RGB L024 Ulanzi 40W LED COB</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1 italic">Luz COB de 40W con espectro RGB completo.
+                            Ideal para crear efectos de color espectaculares en producciones de moda, video musical y
+                            fotografía creativa.</p>
+                        <a class="inline-block py-3 px-4 text-center text-xs font-bold uppercase tracking-widest rounded-lg transition-all"
+                            style="border:1px solid #c59a6d;color:#c59a6d"
+                            onmouseover="this.style.background='#c59a6d';this.style.color='#1d1915'"
+                            onmouseout="this.style.background='';this.style.color='#c59a6d'"
+                            href="https://wa.me/573195025967?text=Hola,%20quiero%20consultar%20sobre%20la%20Luz%20RGB%20L024%20Ulanzi%2040W">Consultar
+                            disponibilidad</a>
+                    </div>
+                </div>
+
+                <!-- Ulanzi L023 Bicolor -->
+                <div class="item-card group flex flex-col rounded-xl overflow-hidden" style="background:#12100e">
+                    <div class="aspect-square bg-black overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                            src="images/ulanzi-bicolor.png" alt="Kit Luz Bicolor L023 Ulanzi con Softbox Linterna" />
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h4 class="text-xl font-bold mb-2">Kit Luz Bicolor L023 Ulanzi con Softbox Linterna</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1 italic">Kit completo que incluye luz bicolor
+                            ajustable de 2700K a 6500K con softbox tipo linterna. Produce una luz suave y envolvente,
+                            perfecta para retratos y entrevistas.</p>
+                        <a class="inline-block py-3 px-4 text-center text-xs font-bold uppercase tracking-widest rounded-lg transition-all"
+                            style="border:1px solid #c59a6d;color:#c59a6d"
+                            onmouseover="this.style.background='#c59a6d';this.style.color='#1d1915'"
+                            onmouseout="this.style.background='';this.style.color='#c59a6d'"
+                            href="https://wa.me/573195025967?text=Hola,%20quiero%20consultar%20sobre%20el%20Kit%20Luz%20Bicolor%20L023%20Ulanzi">Consultar
+                            disponibilidad</a>
+                    </div>
+                </div>
+
+                <!-- Nanlite FC-300B -->
+                <div class="item-card group flex flex-col rounded-xl overflow-hidden" style="background:#12100e">
+                    <div class="aspect-square bg-black overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                            src="images/nanlite-fc300b.png" alt="Nanlite FC-300B" />
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h4 class="text-xl font-bold mb-2">Luz Nanlite FC-300B</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1 italic">Fresnel LED bicolor de 300W con rango de
+                            temperatura de color de 2700K a 6500K. Potente y precisa, ideal para producciones
+                            cinematográficas y comerciales de alto nivel.</p>
+                        <a class="inline-block py-3 px-4 text-center text-xs font-bold uppercase tracking-widest rounded-lg transition-all"
+                            style="border:1px solid #c59a6d;color:#c59a6d"
+                            onmouseover="this.style.background='#c59a6d';this.style.color='#1d1915'"
+                            onmouseout="this.style.background='';this.style.color='#c59a6d'"
+                            href="https://wa.me/573195025967?text=Hola,%20quiero%20consultar%20sobre%20la%20Luz%20Nanlite%20FC-300B">Consultar
+                            disponibilidad</a>
+                    </div>
+                </div>
+
+                <!-- Nanlite FC-500B -->
+                <div class="item-card group flex flex-col rounded-xl overflow-hidden" style="background:#12100e">
+                    <div class="aspect-square bg-black overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                            src="images/nanlite-fc500b.png" alt="Nanlite FC-500B" />
+                        <div class="absolute top-4 right-4 text-[10px] font-bold px-2 py-1 rounded"
+                            style="background:#c59a6d;color:#1d1915">500W</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h4 class="text-xl font-bold mb-2">Luz Nanlite FC-500B</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1 italic">Fresnel LED bicolor de 500W, la herramienta
+                            de iluminación más potente de nuestra flota. Temperatura ajustable de 2700K a 6500K con
+                            control remoto, perfecta para sets exigentes.</p>
+                        <a class="inline-block py-3 px-4 text-center text-xs font-bold uppercase tracking-widest rounded-lg transition-all"
+                            style="border:1px solid #c59a6d;color:#c59a6d"
+                            onmouseover="this.style.background='#c59a6d';this.style.color='#1d1915'"
+                            onmouseout="this.style.background='';this.style.color='#c59a6d'"
+                            href="https://wa.me/573195025967?text=Hola,%20quiero%20consultar%20sobre%20la%20Luz%20Nanlite%20FC-500B">Consultar
+                            disponibilidad</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 2: Grip -->
+        <section class="mb-20 scroll-reveal">
+            <div class="flex items-center gap-4 mb-8 pb-4" style="border-bottom:1px solid rgba(197,154,109,0.1)">
+                <span class="material-symbols-outlined" style="color:#c59a6d">camera_indoor</span>
+                <h2 class="text-2xl font-bold uppercase tracking-widest">Grip</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Porta Telón -->
+                <div class="item-card group flex flex-col rounded-xl overflow-hidden" style="background:#12100e">
+                    <div class="aspect-square bg-black overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                            src="images/porta-telon.png" alt="Porta Telón" />
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h4 class="text-xl font-bold mb-2">Porta Telón</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1 italic">Sistema de soporte tipo trípode para
+                            telones fotográficos. Disponible con telón verde (chroma key), blanco y negro. Ideal para
+                            streamings, entrevistas y fotografía en estudio.</p>
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-[10px] font-bold px-2 py-1 rounded"
+                                style="background:#22c55e;color:#fff">Verde</span>
+                            <span class="text-[10px] font-bold px-2 py-1 rounded"
+                                style="background:#f1f5f9;color:#1d1915">Blanco</span>
+                            <span class="text-[10px] font-bold px-2 py-1 rounded"
+                                style="background:#1d1915;color:#fff;border:1px solid #555">Negro</span>
+                        </div>
+                        <a class="inline-block py-3 px-4 text-center text-xs font-bold uppercase tracking-widest rounded-lg transition-all"
+                            style="border:1px solid #c59a6d;color:#c59a6d"
+                            onmouseover="this.style.background='#c59a6d';this.style.color='#1d1915'"
+                            onmouseout="this.style.background='';this.style.color='#c59a6d'"
+                            href="https://wa.me/573195025967?text=Hola,%20quiero%20consultar%20sobre%20el%20Porta%20Tel%C3%B3n">Consultar
+                            disponibilidad</a>
+                    </div>
+                </div>
+
+                <!-- Soportes Tipo C -->
+                <div class="item-card group flex flex-col rounded-xl overflow-hidden" style="background:#12100e">
+                    <div class="aspect-square bg-black overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                            src="images/soportes-luces.png" alt="Soportes Tipo C para Luces" />
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h4 class="text-xl font-bold mb-2">Soportes Tipo C para Luces</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1 italic">Trípodes y soportes tipo C de acero
+                            resistente para montaje de luminarias. Permiten posicionar las luces en ángulos precisos
+                            para un control total de la iluminación en set.</p>
+                        <a class="inline-block py-3 px-4 text-center text-xs font-bold uppercase tracking-widest rounded-lg transition-all"
+                            style="border:1px solid #c59a6d;color:#c59a6d"
+                            onmouseover="this.style.background='#c59a6d';this.style.color='#1d1915'"
+                            onmouseout="this.style.background='';this.style.color='#c59a6d'"
+                            href="https://wa.me/573195025967?text=Hola,%20quiero%20consultar%20sobre%20los%20Soportes%20Tipo%20C">Consultar
+                            disponibilidad</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 3: Accesorios de Cámara -->
+        <section class="mb-20 scroll-reveal">
+            <div class="flex items-center gap-4 mb-8 pb-4" style="border-bottom:1px solid rgba(197,154,109,0.1)">
+                <span class="material-symbols-outlined" style="color:#c59a6d">videocam</span>
+                <h2 class="text-2xl font-bold uppercase tracking-widest">Accesorios de Cámara</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Feelworld F6 -->
+                <div class="item-card group flex flex-col rounded-xl overflow-hidden" style="background:#12100e">
+                    <div class="aspect-square bg-black overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                            src="images/feelworld-f6-new.png" alt="Monitor Feelworld F6" />
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h4 class="text-xl font-bold mb-2">Monitor Feelworld F6</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1 italic">Monitor de campo Full HD de 5.5" con
+                            pantalla IPS de alto brillo (500 nits). Incluye histograma, falso color, foco pico y
+                            marcadores de cuadro para un monitoreo profesional preciso.</p>
+                        <a class="inline-block py-3 px-4 text-center text-xs font-bold uppercase tracking-widest rounded-lg transition-all"
+                            style="border:1px solid #c59a6d;color:#c59a6d"
+                            onmouseover="this.style.background='#c59a6d';this.style.color='#1d1915'"
+                            onmouseout="this.style.background='';this.style.color='#c59a6d'"
+                            href="https://wa.me/573195025967?text=Hola,%20quiero%20consultar%20sobre%20el%20Monitor%20Feelworld%20F6">Consultar
+                            disponibilidad</a>
+                    </div>
+                </div>
+
+                <!-- Hollyland Pyro S -->
+                <div class="item-card group flex flex-col rounded-xl overflow-hidden" style="background:#12100e">
+                    <div class="aspect-square bg-black overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                            src="images/hollyland-pyro-s.png" alt="Hollyland Pyro S" />
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h4 class="text-xl font-bold mb-2">Hollyland Pyro S</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1 italic">Sistema de transmisión de video inalámbrico
+                            con latencia ultra baja de 0.06 s y alcance de hasta 300 m. Transmite señal HDMI 1080p60 en
+                            tiempo real al monitor del director o cliente.</p>
+                        <a class="inline-block py-3 px-4 text-center text-xs font-bold uppercase tracking-widest rounded-lg transition-all"
+                            style="border:1px solid #c59a6d;color:#c59a6d"
+                            onmouseover="this.style.background='#c59a6d';this.style.color='#1d1915'"
+                            onmouseout="this.style.background='';this.style.color='#c59a6d'"
+                            href="https://wa.me/573195025967?text=Hola,%20quiero%20consultar%20sobre%20el%20Hollyland%20Pyro%20S">Consultar
+                            disponibilidad</a>
+                    </div>
+                </div>
+
+                <!-- Tilta Nucleus Nii -->
+                <div class="item-card group flex flex-col rounded-xl overflow-hidden" style="background:#12100e">
+                    <div class="aspect-square bg-black overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                            src="images/tilta-nucleus-nii.png" alt="Tilta Nucleus Nii" />
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h4 class="text-xl font-bold mb-2">Tilta Nucleus Nii</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1 italic">Follow focus inalámbrico ultra compacto de
+                            la línea Nucleus de Tilta. Control de enfoque de precisión compatible con la mayoría de
+                            objetivos, ideal para filmación en solitario y equipos pequeños.</p>
+                        <a class="inline-block py-3 px-4 text-center text-xs font-bold uppercase tracking-widest rounded-lg transition-all"
+                            style="border:1px solid #c59a6d;color:#c59a6d"
+                            onmouseover="this.style.background='#c59a6d';this.style.color='#1d1915'"
+                            onmouseout="this.style.background='';this.style.color='#c59a6d'"
+                            href="https://wa.me/573195025967?text=Hola,%20quiero%20consultar%20sobre%20el%20Tilta%20Nucleus%20Nii">Consultar
+                            disponibilidad</a>
+                    </div>
+                </div>
+
+                <!-- Zhiyun Crane 3S -->
+                <div class="item-card group flex flex-col rounded-xl overflow-hidden" style="background:#12100e">
+                    <div class="aspect-square bg-black overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                            src="images/zhiyun-crane-3s.png" alt="Zhiyun Crane 3S" />
+                        <div class="absolute top-4 right-4 text-[10px] font-bold px-2 py-1 rounded"
+                            style="background:#c59a6d;color:#1d1915">6.5 KG</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h4 class="text-xl font-bold mb-2">Zhiyun Crane 3S</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1 italic">Gimbal de 3 ejes de alta carga con
+                            capacidad máxima de 6.5 kg. Diseñado para cámaras y lentes grandes, con control inteligente
+                            de movimiento para tomas fluidas y estables.</p>
+                        <a class="inline-block py-3 px-4 text-center text-xs font-bold uppercase tracking-widest rounded-lg transition-all"
+                            style="border:1px solid #c59a6d;color:#c59a6d"
+                            onmouseover="this.style.background='#c59a6d';this.style.color='#1d1915'"
+                            onmouseout="this.style.background='';this.style.color='#c59a6d'"
+                            href="https://wa.me/573195025967?text=Hola,%20quiero%20consultar%20sobre%20el%20Zhiyun%20Crane%203S">Consultar
+                            disponibilidad</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="rounded-2xl p-12 text-center scroll-reveal"
+            style="background:rgba(197,154,109,0.08);border:1px solid rgba(197,154,109,0.2)">
+            <span class="material-symbols-outlined text-5xl mb-4 block" style="color:#c59a6d">support_agent</span>
+            <h3 class="text-2xl font-bold mb-4">¿Necesitas algo que no ves aquí?</h3>
+            <p class="text-slate-400 mb-8 max-w-lg mx-auto">Contamos con más equipo disponible. Contáctanos por WhatsApp
+                y te asesoramos para tu producción.</p>
+            <a href="https://wa.me/573195025967"
+                class="inline-flex items-center gap-2 font-bold px-8 py-3 uppercase tracking-[0.2em] text-sm transition-colors"
+                style="background:#c59a6d;color:#1d1915">
+                <span class="material-symbols-outlined text-sm">chat</span> Escribirnos en WhatsApp
+            </a>
+        </section>
+    </main>
+
+    <footer class="border-t py-12 px-6 lg:px-20 text-slate-400 text-sm"
+        style="background:#1d1915;border-color:rgba(197,154,109,0.1)">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <img src="images/logo-icon.svg" alt="Logo Vértice Visual" class="w-6 h-6" />
+                <p class="font-bold text-slate-100">VÉRTICE VISUAL © 2024</p>
+            </div>
+            <div class="flex gap-8">
+                <a class="hover:text-primary transition-colors" href="#">Instagram</a>
+                <a class="hover:text-primary transition-colors" href="#">Vimeo</a>
+                <a class="hover:text-primary transition-colors" href="#">Términos y Condiciones</a>
+            </div>
+            <p class="text-xs">Santander, Colombia</p>
+        </div>
+    </footer>
+
+    <a class="fixed bottom-8 right-8 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform z-[100]"
+        href="https://wa.me/573195025967" style="background:#c59a6d">
+        <svg class="w-7 h-7" fill="#1d1915" viewBox="0 0 448 512">
+            <path
+                d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.4 2.4-11.2 2.5-2.5 5.5-6.4 8.3-9.6 2.8-3.2 3.7-5.5 5.5-9.3 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+        </svg>
+    </a>
+
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const menuClose = document.getElementById("menu-close");
+        const mobileMenu = document.getElementById("mobile-menu");
+        menuToggle.addEventListener("click", () => { mobileMenu.classList.toggle("hidden"); mobileMenu.classList.toggle("flex") });
+        menuClose.addEventListener("click", () => { mobileMenu.classList.add("hidden"); mobileMenu.classList.remove("flex") });
+        const reveals = document.querySelectorAll(".scroll-reveal");
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible") }) }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

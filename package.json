@@ -1,0 +1,13 @@
+{
+  "name": "vertice-visual",
+  "version": "1.0.0",
+  "description": "Sitio web de Vértice Visual — Producción Audiovisual",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["vertice-visual", "produccion-audiovisual", "santander"],
+  "author": "Vértice Visual",
+  "license": "ISC"
+}

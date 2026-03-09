@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Diamond / rhombus shape -->
+  <polygon points="100,6 194,100 100,194 6,100" fill="#264653" stroke="#8fa8b0" stroke-width="1.5"/>
+  <!-- Diamond border highlight (inner) -->
+  <polygon points="100,16 184,100 100,184 16,100" fill="none" stroke="#6a8f9a" stroke-width="0.8" opacity="0.6"/>
+  <!-- Camera aperture / iris blades centered at 100,100 -->
+  <g transform="translate(100,100)">
+    <!-- Aperture blades (6 blades) -->
+    <path d="M0,0 L24,-28 Q36,-8 24,18 Z" fill="#8fa8b0" opacity="0.88"/>
+    <path d="M0,0 L40,6 Q32,26 6,32 Z" fill="#8fa8b0" opacity="0.88"/>
+    <path d="M0,0 L18,38 Q-4,38 -22,20 Z" fill="#8fa8b0" opacity="0.88"/>
+    <path d="M0,0 L-24,28 Q-36,8 -24,-18 Z" fill="#8fa8b0" opacity="0.88"/>
+    <path d="M0,0 L-40,-6 Q-32,-26 -6,-32 Z" fill="#8fa8b0" opacity="0.88"/>
+    <path d="M0,0 L-18,-38 Q4,-38 22,-20 Z" fill="#8fa8b0" opacity="0.88"/>
+    <!-- Center hexagon (aperture opening - dark) -->
+    <polygon points="0,-20 17,-10 17,10 0,20 -17,10 -17,-10" fill="#1a1a1a"/>
+  </g>
+</svg>
