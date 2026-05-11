@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Andes Epic — Vértice Visual</title>
+    <meta name="description" content="Cubrimiento fotográfico y de video del evento Andes Epic 2025. Deportes de aventura en los Andes colombianos." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#c59a6d", "petroleum": "#264653", "background-dark": "#1d1915" }, fontFamily: { "sans": ["Work Sans", "sans-serif"], "serif": ["Playfair Display", "Georgia", "serif"] } } } }
+    </script>
+    <style>
+        body { font-family: 'Work Sans', sans-serif; background-color: #1d1915; }
+
+        /* Hero */
+        .hero-bg {
+            background-image: url('images/andes-epic-2.jpg');
+            background-size: cover;
+            background-position: center 30%;
+        }
+
+        /* Nav links */
+        .nav-link { position: relative; }
+        .nav-link::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1px; background:#c59a6d; transition:width .3s ease; }
+        .nav-link:hover::after, .nav-link.active::after { width:100%; }
+        .nav-link.active { color:#c59a6d; }
+
+        /* Scroll reveal */
+        .scroll-reveal { opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s ease; }
+        .scroll-reveal.visible { opacity:1; transform:translateY(0); }
+
+        /* Tab switcher */
+        .tab-btn { transition: all .3s ease; }
+        .tab-btn.active { background:#c59a6d; color:#1d1915; border-color:#c59a6d; }
+
+        /* Dynamic photo grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+        @media(max-width:768px) {
+            .photo-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media(max-width:480px) {
+            .photo-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Photo card */
+        .photo-card {
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            aspect-ratio: 3/2;
+            background: #2a2420;
+            position: relative;
+        }
+        .photo-card img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform .5s ease, opacity .4s ease;
+            opacity: 0;
+        }
+        .photo-card img.loaded { opacity: 1; }
+        .photo-card:hover img { transform: scale(1.06); }
+        .photo-card .overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+            opacity: 0; transition: opacity .3s ease;
+            display: flex; align-items: flex-end; padding: 0.75rem;
+        }
+        .photo-card:hover .overlay { opacity: 1; }
+        .photo-card .zoom-icon {
+            position: absolute; top: 0.5rem; right: 0.5rem;
+            opacity: 0; transition: opacity .3s ease;
+            color: white; font-size: 1.4rem;
+        }
+        .photo-card:hover .zoom-icon { opacity: 1; }
+
+        /* Skeleton loader */
+        .photo-skeleton {
+            background: linear-gradient(90deg, #2a2420 25%, #3a3028 50%, #2a2420 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 0.5rem;
+            aspect-ratio: 3/2;
+        }
+        @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+        /* Lightbox */
+        #photo-lightbox { transition: opacity .3s ease; }
+        .lb-nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(197,154,109,0.15); border: 1px solid rgba(197,154,109,0.3);
+            color: white; border-radius: 50%; width: 48px; height: 48px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background .2s ease;
+            backdrop-filter: blur(4px);
+        }
+        .lb-nav-btn:hover { background: rgba(197,154,109,0.35); }
+        #lb-prev { left: 1rem; }
+        #lb-next { right: 1rem; }
+        #lb-counter { font-size: 0.75rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+
+        /* Load more button */
+        #load-more-btn {
+            transition: all .3s ease;
+        }
+        #load-more-btn:hover {
+            background: #c59a6d !important;
+            color: #1d1915 !important;
+        }
+
+        /* Video card */
+        .video-card { transition:transform .3s ease, box-shadow .3s ease; }
+        .video-card:hover { transform:translateY(-4px); box-shadow:0 20px 60px rgba(197,154,109,0.15); }
+        .video-thumb { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:0.75rem; }
+        .video-thumb iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:0.75rem; }
+
+        /* Section divider line */
+        .section-line { width:60px; height:2px; background:#c59a6d; }
+
+        /* Breadcrumb */
+        .breadcrumb-sep { color:rgba(255,255,255,0.3); }
+    </style>
+</head>
+
+<body class="text-slate-100 min-h-screen">
+
+    <!-- HEADER -->
+    <header class="w-full border-b border-white/10 px-6 py-5 lg:px-20 backdrop-blur-sm bg-background-dark/90 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="images/logo-icon.svg" alt="Vértice Visual" class="h-9 w-auto" />
+                <span class="text-xl font-bold tracking-tight uppercase">Vértice Visual</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="nav-link text-sm font-medium text-white/80 hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="nav-link active text-sm font-medium" href="proyectos.html" style="color:#c59a6d">Proyectos</a>
+                <a class="nav-link text-sm font-medium text-white/80 hover:text-primary transition-colors" href="rental.html">Rental</a>
+                <a class="nav-link text-sm font-medium text-white/80 hover:text-primary transition-colors" href="nosotros.html">Nosotros</a>
+                <a class="nav-link text-sm font-medium text-white/80 hover:text-primary transition-colors" href="contacto.html">Contacto</a>
+            </nav>
+            <button id="menu-toggle" class="md:hidden text-white"><span class="material-symbols-outlined text-3xl">menu</span></button>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-background-dark/98 flex-col items-center justify-center gap-8 hidden">
+        <button id="menu-close" class="absolute top-6 right-6 text-white"><span class="material-symbols-outlined text-3xl">close</span></button>
+        <nav class="flex flex-col items-center gap-8 mt-16">
+            <a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors" href="index.html">Home</a>
+            <a class="text-2xl font-bold tracking-widest uppercase" style="color:#c59a6d" href="proyectos.html">Proyectos</a>
+            <a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors" href="rental.html">Rental</a>
+            <a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors" href="nosotros.html">Nosotros</a>
+            <a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors" href="contacto.html">Contacto</a>
+        </nav>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero-bg relative w-full" style="height:70vh; min-height:480px;">
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(29,25,21,0.3) 0%, rgba(29,25,21,0.55) 50%, rgba(29,25,21,1) 100%);"></div>
+        <div class="absolute bottom-0 left-0 w-full px-6 pb-12 md:px-20 max-w-7xl mx-auto">
+            <!-- Breadcrumb -->
+            <div class="flex items-center gap-2 mb-6 text-xs font-medium uppercase tracking-widest">
+                <a href="proyectos.html" class="text-white/50 hover:text-primary transition-colors">Proyectos</a>
+                <span class="breadcrumb-sep">/</span>
+                <span style="color:#c59a6d">Andes Epic</span>
+            </div>
+            <p class="font-bold uppercase tracking-[0.3em] text-xs mb-3" style="color:#c59a6d">Deportes · 2025</p>
+            <h1 class="text-white text-5xl md:text-7xl font-serif mb-4" style="font-family:'Playfair Display',serif;">Andes Epic</h1>
+            <p class="text-slate-300 max-w-xl text-base md:text-lg">Cubrimiento fotográfico y de video de uno de los eventos de aventura más exigentes de los Andes colombianos.</p>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-16">
+
+        <!-- TAB SWITCHER -->
+        <div class="flex gap-3 mb-14 scroll-reveal" id="tab-switcher">
+            <button id="tab-foto" class="tab-btn active px-7 py-3 rounded-full border border-primary text-sm font-bold uppercase tracking-widest" onclick="switchTab('foto')">
+                <span class="material-symbols-outlined align-middle text-base mr-1">photo_camera</span> Fotografía
+            </button>
+            <button id="tab-video" class="tab-btn px-7 py-3 rounded-full border border-white/20 text-white/60 text-sm font-bold uppercase tracking-widest hover:border-primary hover:text-primary" onclick="switchTab('video')">
+                <span class="material-symbols-outlined align-middle text-base mr-1">videocam</span> Video
+            </button>
+        </div>
+
+        <!-- ==================== FOTOGRAFÍA ==================== -->
+        <div id="section-foto">
+            <div class="mb-10 scroll-reveal">
+                <div class="section-line mb-4"></div>
+                <div class="flex items-end justify-between flex-wrap gap-4">
+                    <div>
+                        <h2 class="text-white text-3xl md:text-4xl font-serif mb-3" style="font-family:'Playfair Display',serif;">Fotografía</h2>
+                        <p class="text-slate-400 max-w-2xl">Momentos congelados en el tiempo. Capturamos la intensidad, el esfuerzo y la belleza del paisaje andino durante el evento.</p>
+                    </div>
+                    <span id="photo-count" class="text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-white/10 text-slate-400">Cargando...</span>
+                </div>
+            </div>
+
+            <!-- Grid dinámico -->
+            <div class="photo-grid" id="photo-grid"></div>
+
+            <!-- Botón cargar más -->
+            <div class="text-center mt-10" id="load-more-wrap">
+                <button id="load-more-btn"
+                    class="px-10 py-4 border border-white/20 text-white/70 text-sm font-bold uppercase tracking-[0.2em] transition-all"
+                    onclick="loadMorePhotos()">
+                    <span class="material-symbols-outlined align-middle text-base mr-1">add_photo_alternate</span>
+                    Cargar más fotos
+                </button>
+                <p id="load-progress" class="text-slate-500 text-xs mt-3"></p>
+            </div>
+        </div>
+
+        <!-- ==================== VIDEO ==================== -->
+        <div id="section-video" class="hidden">
+            <div class="mb-10 scroll-reveal">
+                <div class="section-line mb-4"></div>
+                <div class="flex items-end justify-between flex-wrap gap-4">
+                    <div>
+                        <h2 class="text-white text-3xl md:text-4xl font-serif mb-3" style="font-family:'Playfair Display',serif;">Video</h2>
+                        <p class="text-slate-400 max-w-2xl">La adrenalina en movimiento. Nuestro cubrimiento audiovisual captura la esencia del evento desde el primer kilómetro hasta la meta.</p>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-white/10 text-slate-400">6 clips · Día 1</span>
+                </div>
+            </div>
+
+            <!-- Video oficial YouTube (destacado) -->
+            <div class="video-card bg-white/5 rounded-2xl overflow-hidden border border-white/10 p-6 mb-8 scroll-reveal">
+                <div class="video-thumb mb-5">
+                    <iframe src="https://www.youtube-nocookie.com/embed/N7RP6oyhvjo" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+                </div>
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#c59a6d">Video oficial · Andes Epic 2025</p>
+                        <h3 class="text-white text-2xl font-bold" style="font-family:'Playfair Display',serif;">Resumen del evento</h3>
+                        <p class="text-slate-400 text-sm mt-2">Cubrimiento completo del evento: largada, puntos clave del recorrido, llegada y premiación.</p>
+                    </div>
+                    <span class="text-xs font-bold px-3 py-1 rounded-full border border-white/20 text-white/60 shrink-0 mt-1">2025</span>
+                </div>
+            </div>
+
+            <!-- Separador clips locales -->
+            <div class="mb-8 scroll-reveal">
+                <p class="text-xs font-bold uppercase tracking-[0.25em] mb-1" style="color:#c59a6d">Material de campo</p>
+                <h3 class="text-white text-xl font-bold">Clips — Día 1</h3>
+                <p class="text-slate-500 text-sm mt-1">Material en bruto exportado del cubrimiento del primer día del evento.</p>
+            </div>
+
+            <!-- Grid de clips locales -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 scroll-reveal" id="video-clips-grid">
+
+                <!-- CLIP 1 -->
+                <div class="video-card bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+                    <div class="relative" style="padding-bottom:56.25%;height:0;overflow:hidden;">
+                        <video class="absolute inset-0 w-full h-full object-cover" controls preload="metadata"
+                               style="border-radius:0.75rem 0.75rem 0 0;"
+                               poster="images/andes-epic-2.jpg">
+                            <source src="videos/andes-epic-dia1/CLIP 1 R.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#c59a6d">Clip 1 · Día 1</p>
+                        <h4 class="text-white font-bold">Apertura — Largada</h4>
+                        <p class="text-slate-500 text-xs mt-1">Inicio del evento y salida de los competidores.</p>
+                    </div>
+                </div>
+
+                <!-- CLIP 2 -->
+                <div class="video-card bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+                    <div class="relative" style="padding-bottom:56.25%;height:0;overflow:hidden;">
+                        <video class="absolute inset-0 w-full h-full object-cover" controls preload="metadata"
+                               style="border-radius:0.75rem 0.75rem 0 0;"
+                               poster="images/andes-epic-3.jpg">
+                            <source src="videos/andes-epic-dia1/CLIP 2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#c59a6d">Clip 2 · Día 1</p>
+                        <h4 class="text-white font-bold">En ruta</h4>
+                        <p class="text-slate-500 text-xs mt-1">Competidores avanzando por las primeras etapas del trayecto.</p>
+                    </div>
+                </div>
+
+                <!-- CLIP 3 -->
+                <div class="video-card bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+                    <div class="relative" style="padding-bottom:56.25%;height:0;overflow:hidden;">
+                        <video class="absolute inset-0 w-full h-full object-cover" controls preload="metadata"
+                               style="border-radius:0.75rem 0.75rem 0 0;"
+                               poster="images/andes-epic-4.jpg">
+                            <source src="videos/andes-epic-dia1/CLIP 3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#c59a6d">Clip 3 · Día 1</p>
+                        <h4 class="text-white font-bold">Paisaje andino</h4>
+                        <p class="text-slate-500 text-xs mt-1">Tomas del entorno natural y los paisajes de montaña.</p>
+                    </div>
+                </div>
+
+                <!-- CLIP 4 -->
+                <div class="video-card bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+                    <div class="relative" style="padding-bottom:56.25%;height:0;overflow:hidden;">
+                        <video class="absolute inset-0 w-full h-full object-cover" controls preload="metadata"
+                               style="border-radius:0.75rem 0.75rem 0 0;"
+                               poster="images/andes-epic-1.jpg">
+                            <source src="videos/andes-epic-dia1/CLIP 4.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#c59a6d">Clip 4 · Día 1</p>
+                        <h4 class="text-white font-bold">Zona de hidratación</h4>
+                        <p class="text-slate-500 text-xs mt-1">Puntos de control y asistencia en el recorrido.</p>
+                    </div>
+                </div>
+
+                <!-- CLIP 5 -->
+                <div class="video-card bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+                    <div class="relative" style="padding-bottom:56.25%;height:0;overflow:hidden;">
+                        <video class="absolute inset-0 w-full h-full object-cover" controls preload="metadata"
+                               style="border-radius:0.75rem 0.75rem 0 0;"
+                               poster="images/andes-epic-2.jpg">
+                            <source src="videos/andes-epic-dia1/CLIP 5.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#c59a6d">Clip 5 · Día 1</p>
+                        <h4 class="text-white font-bold">Ascenso y descenso</h4>
+                        <p class="text-slate-500 text-xs mt-1">Los tramos técnicos de mayor exigencia física del día.</p>
+                    </div>
+                </div>
+
+                <!-- CLIP 6 -->
+                <div class="video-card bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+                    <div class="relative" style="padding-bottom:56.25%;height:0;overflow:hidden;">
+                        <video class="absolute inset-0 w-full h-full object-cover" controls preload="metadata"
+                               style="border-radius:0.75rem 0.75rem 0 0;"
+                               poster="images/andes-epic-3.jpg">
+                            <source src="videos/andes-epic-dia1/CLIP 6.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#c59a6d">Clip 6 · Día 1</p>
+                        <h4 class="text-white font-bold">Meta del día</h4>
+                        <p class="text-slate-500 text-xs mt-1">Llegada de los competidores al final de la primera jornada.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-24 text-center scroll-reveal">
+            <p class="text-slate-400 mb-6">¿Quieres un cubrimiento así para tu evento?</p>
+            <a href="contacto.html" class="inline-block font-bold px-10 py-4 uppercase tracking-[0.2em] text-sm transition-colors" style="background:#c59a6d;color:#1d1915">Hablemos</a>
+            <a href="proyectos.html" class="inline-block ml-4 font-bold px-10 py-4 uppercase tracking-[0.2em] text-sm border border-white/20 text-white/70 hover:border-primary hover:text-primary transition-colors rounded-none">← Ver todos los proyectos</a>
+        </div>
+    </div>
+
+    <!-- PHOTO LIGHTBOX -->
+    <div id="photo-lightbox" class="fixed inset-0 z-[200] flex items-center justify-center opacity-0 pointer-events-none" style="background:rgba(29,25,21,0.97);">
+        <!-- Close -->
+        <button onclick="closePhotoLightbox()" class="absolute top-5 right-5 text-white hover:text-primary z-20" style="background:rgba(0,0,0,0.4);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;">
+            <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+        <!-- Counter -->
+        <div class="absolute top-5 left-1/2" style="transform:translateX(-50%)">
+            <span id="lb-counter"></span>
+        </div>
+        <!-- Prev -->
+        <button id="lb-prev" class="lb-nav-btn z-20" onclick="lbNavigate(-1)">
+            <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <!-- Image -->
+        <div class="w-full h-full flex items-center justify-center px-20 py-16">
+            <img id="lightbox-photo" src="" alt="" style="max-width:100%;max-height:85vh;object-fit:contain;border-radius:0.5rem;" />
+        </div>
+        <!-- Next -->
+        <button id="lb-next" class="lb-nav-btn z-20" onclick="lbNavigate(1)">
+            <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+        <!-- Caption -->
+        <div class="absolute bottom-5 left-1/2" style="transform:translateX(-50%);white-space:nowrap;">
+            <p id="lightbox-caption" class="text-slate-400 text-xs text-center"></p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="mt-20 border-t px-6 py-12 md:px-20" style="border-color:rgba(197,154,109,0.1);background:rgba(29,25,21,0.5)">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-2">
+                <img src="images/logo-icon.svg" alt="Vértice Visual" class="h-7 w-auto" />
+                <h4 class="text-lg font-bold text-slate-100 uppercase tracking-widest">Vértice Visual</h4>
+            </div>
+            <p class="text-sm text-slate-500">© 2025 Vértice Visual. Todos los derechos reservados.</p>
+            <div class="flex gap-6">
+                <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">camera</span></a>
+                <a class="text-slate-400 hover:text-primary transition-colors" href="contacto.html"><span class="material-symbols-outlined">mail</span></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp FAB -->
+    <a class="fixed bottom-8 right-8 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform z-[100]"
+        href="https://wa.me/573195025967" style="background:#c59a6d">
+        <svg class="w-7 h-7" fill="#1d1915" viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.4 2.4-11.2 2.5-2.5 5.5-6.4 8.3-9.6 2.8-3.2 3.7-5.5 5.5-9.3 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
+
+    <script>
+        // ── Mobile menu ──
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            const m = document.getElementById('mobile-menu');
+            m.classList.toggle('hidden'); m.classList.toggle('flex');
+        });
+        document.getElementById('menu-close').addEventListener('click', () => {
+            const m = document.getElementById('mobile-menu');
+            m.classList.add('hidden'); m.classList.remove('flex');
+        });
+
+        // ── Tab switcher ──
+        function switchTab(tab) {
+            const btnFoto = document.getElementById('tab-foto');
+            const btnVideo = document.getElementById('tab-video');
+            const secFoto = document.getElementById('section-foto');
+            const secVideo = document.getElementById('section-video');
+            if (tab === 'foto') {
+                btnFoto.classList.add('active'); btnVideo.classList.remove('active');
+                btnVideo.style.cssText = '';
+                secFoto.classList.remove('hidden'); secVideo.classList.add('hidden');
+            } else {
+                btnVideo.classList.add('active'); btnFoto.classList.remove('active');
+                btnFoto.style.cssText = '';
+                secVideo.classList.remove('hidden'); secFoto.classList.add('hidden');
+                document.querySelectorAll('#section-video .scroll-reveal').forEach(el => el.classList.add('visible'));
+            }
+        }
+
+        // ── Dynamic photo gallery ──
+        const PAGE_SIZE = 36;
+        let allPhotos = [];
+        let loadedCount = 0;
+        let lbIndex = 0; // current lightbox index within allPhotos
+
+        // Build photo list from filelist.json
+        fetch('images/andes-epic-etapa1/filelist.json')
+            .then(r => r.json())
+            .then(files => {
+                allPhotos = files;
+                document.getElementById('photo-count').textContent = allPhotos.length + ' fotos · Etapa 1';
+                renderSkeletons(PAGE_SIZE);
+                loadMorePhotos();
+            })
+            .catch(() => {
+                // fallback to original 4 photos if json fails
+                allPhotos = ['images/andes-epic-1.jpg','images/andes-epic-2.jpg','images/andes-epic-3.jpg','images/andes-epic-4.jpg'];
+                loadMorePhotos();
+            });
+
+        function renderSkeletons(n) {
+            const grid = document.getElementById('photo-grid');
+            for (let i = 0; i < Math.min(n, 12); i++) {
+                const sk = document.createElement('div');
+                sk.className = 'photo-skeleton';
+                sk.id = 'sk-' + i;
+                grid.appendChild(sk);
+            }
+        }
+
+        function clearSkeletons() {
+            document.querySelectorAll('.photo-skeleton').forEach(s => s.remove());
+        }
+
+        function loadMorePhotos() {
+            const grid = document.getElementById('photo-grid');
+            const end = Math.min(loadedCount + PAGE_SIZE, allPhotos.length);
+            const btn = document.getElementById('load-more-btn');
+            btn.disabled = true;
+            btn.style.opacity = '0.5';
+
+            for (let i = loadedCount; i < end; i++) {
+                const src = allPhotos[i];
+                const idx = i;
+
+                const card = document.createElement('div');
+                card.className = 'photo-card';
+                card.onclick = () => openLightbox(idx);
+
+                const img = document.createElement('img');
+                img.loading = 'lazy';
+                img.alt = 'Andes Epic 2025 · foto ' + (idx + 1);
+                img.src = src;
+                img.onload = () => img.classList.add('loaded');
+                img.onerror = () => { card.style.display = 'none'; };
+
+                const overlay = document.createElement('div');
+                overlay.className = 'overlay';
+
+                const zoom = document.createElement('span');
+                zoom.className = 'material-symbols-outlined zoom-icon';
+                zoom.textContent = 'zoom_in';
+
+                card.appendChild(img);
+                card.appendChild(overlay);
+                card.appendChild(zoom);
+                grid.appendChild(card);
+            }
+
+            clearSkeletons();
+            loadedCount = end;
+
+            // Update progress
+            const prog = document.getElementById('load-progress');
+            prog.textContent = loadedCount + ' de ' + allPhotos.length + ' fotos mostradas';
+
+            // Hide button if all loaded
+            const wrap = document.getElementById('load-more-wrap');
+            if (loadedCount >= allPhotos.length) {
+                wrap.style.display = 'none';
+            } else {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            }
+        }
+
+        // ── Lightbox with navigation ──
+        function openLightbox(idx) {
+            lbIndex = idx;
+            updateLightboxImage();
+            const lb = document.getElementById('photo-lightbox');
+            lb.classList.remove('opacity-0', 'pointer-events-none');
+            lb.classList.add('opacity-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateLightboxImage() {
+            const src = allPhotos[lbIndex];
+            const imgEl = document.getElementById('lightbox-photo');
+            imgEl.style.opacity = '0';
+            imgEl.src = src;
+            imgEl.onload = () => { imgEl.style.opacity = '1'; imgEl.style.transition = 'opacity .25s ease'; };
+            imgEl.alt = 'Andes Epic 2025 · foto ' + (lbIndex + 1);
+            document.getElementById('lightbox-caption').textContent = src.split('/').pop().replace(/-Mejorado-NR|-Enhanced-NR/gi,'').replace(/\.jpg|\.JPG/gi,'').replace(/-/g,' ');
+            document.getElementById('lb-counter').textContent = (lbIndex + 1) + ' / ' + allPhotos.length;
+        }
+
+        function lbNavigate(dir) {
+            lbIndex = (lbIndex + dir + allPhotos.length) % allPhotos.length;
+            updateLightboxImage();
+        }
+
+        function closePhotoLightbox() {
+            const lb = document.getElementById('photo-lightbox');
+            lb.classList.add('opacity-0', 'pointer-events-none');
+            lb.classList.remove('opacity-100');
+            document.body.style.overflow = '';
+        }
+
+        // Click outside to close
+        document.getElementById('photo-lightbox').addEventListener('click', function(e) {
+            if (e.target === this || e.target.id === 'lightbox-photo') closePhotoLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', e => {
+            const lb = document.getElementById('photo-lightbox');
+            if (lb.classList.contains('opacity-0')) return;
+            if (e.key === 'ArrowRight') lbNavigate(1);
+            else if (e.key === 'ArrowLeft') lbNavigate(-1);
+            else if (e.key === 'Escape') closePhotoLightbox();
+        });
+
+        // ── Scroll reveal ──
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -19,3 +19,14 @@ desktop.ini
 .idea/
 *.suo
 *.user
+
+# Archivos multimedia pesados (superan límite de 100MB de GitHub)
+# Videos locales — quedan en disco, no en el repo
+public/videos/
+*.mp4
+*.mov
+*.avi
+
+# Galería de fotos Andes Epic (650 fotos de alta resolución)
+# Permanecen en disco local (J:\CATÁLOGO DE FOTOS)
+public/images/andes-epic-etapa1/
