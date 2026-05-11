@@ -11,6 +11,7 @@ const mimeTypes = {
   '.js': 'text/javascript',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
+  '.JPG': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.gif': 'image/gif',
   '.svg': 'image/svg+xml',
@@ -23,6 +24,8 @@ const server = http.createServer((req, res) => {
   let urlPath = req.url === '/' ? '/index.html' : req.url;
   // Strip query strings
   urlPath = urlPath.split('?')[0];
+  // Decode percent-encoded characters (spaces, tildes, Spanish chars, etc.)
+  try { urlPath = decodeURIComponent(urlPath); } catch(e) {}
 
   const filePath = path.join(PUBLIC_DIR, urlPath);
   const ext = path.extname(filePath).toLowerCase();

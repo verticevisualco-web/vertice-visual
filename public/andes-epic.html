@@ -454,8 +454,14 @@
             .catch(() => {
                 // fallback to original 4 photos if json fails
                 allPhotos = ['images/andes-epic-1.jpg','images/andes-epic-2.jpg','images/andes-epic-3.jpg','images/andes-epic-4.jpg'];
+                document.getElementById('photo-count').textContent = '4 fotos';
                 loadMorePhotos();
             });
+
+        // Helper: encode a path with special chars for use in img.src
+        function encodePath(rawPath) {
+            return rawPath.split('/').map(seg => encodeURIComponent(seg)).join('/');
+        }
 
         function renderSkeletons(n) {
             const grid = document.getElementById('photo-grid');
@@ -489,7 +495,7 @@
                 const img = document.createElement('img');
                 img.loading = 'lazy';
                 img.alt = 'Andes Epic 2025 · foto ' + (idx + 1);
-                img.src = src;
+                img.src = encodePath(src);
                 img.onload = () => img.classList.add('loaded');
                 img.onerror = () => { card.style.display = 'none'; };
 
@@ -537,10 +543,16 @@
             const src = allPhotos[lbIndex];
             const imgEl = document.getElementById('lightbox-photo');
             imgEl.style.opacity = '0';
-            imgEl.src = src;
+            imgEl.src = encodePath(src);
             imgEl.onload = () => { imgEl.style.opacity = '1'; imgEl.style.transition = 'opacity .25s ease'; };
             imgEl.alt = 'Andes Epic 2025 · foto ' + (lbIndex + 1);
-            document.getElementById('lightbox-caption').textContent = src.split('/').pop().replace(/-Mejorado-NR|-Enhanced-NR/gi,'').replace(/\.jpg|\.JPG/gi,'').replace(/-/g,' ');
+            // Clean up caption: remove suffix tags and extension
+            const caption = src.split('/').pop()
+                .replace(/-Mejorado-NR|-Enhanced-NR/gi, '')
+                .replace(/\.jpg|\.JPG/gi, '')
+                .replace(/-/g, ' ')
+                .replace(/\s+/g, ' ').trim();
+            document.getElementById('lightbox-caption').textContent = caption;
             document.getElementById('lb-counter').textContent = (lbIndex + 1) + ' / ' + allPhotos.length;
         }
 

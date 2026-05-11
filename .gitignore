@@ -28,5 +28,6 @@ public/videos/
 *.avi
 
 # Galería de fotos Andes Epic (650 fotos de alta resolución)
-# Permanecen en disco local (J:\CATÁLOGO DE FOTOS)
+# Permanecen en disco local — solo el índice JSON se sube al repo
 public/images/andes-epic-etapa1/
+!public/images/andes-epic-etapa1/filelist.json
