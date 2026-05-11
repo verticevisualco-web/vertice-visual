@@ -31,3 +31,6 @@ public/videos/
 # Permanecen en disco local — solo el índice JSON se sube al repo
 public/images/andes-epic-etapa1/
 !public/images/andes-epic-etapa1/filelist.json
+
+# Selección web: 100 fotos más ligeras (~63 MB) — incluidas en el repo
+# public/images/andes-epic-web/  ← NO ignorar, se sube completa
