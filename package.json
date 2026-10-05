@@ -5,9 +5,20 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "build:css": "tailwindcss -c tailwind.config.js -i src/tailwind.css -o public/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -c tailwind.config.js -i src/tailwind.css -o public/css/tailwind.css --watch"
   },
-  "keywords": ["vertice-visual", "produccion-audiovisual", "santander"],
+  "keywords": [
+    "vertice-visual",
+    "produccion-audiovisual",
+    "santander"
+  ],
   "author": "Vértice Visual",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.11",
+    "tailwindcss": "^3.4.19"
+  }
 }

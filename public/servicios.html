@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Servicios — Vértice Visual</title>
+    <meta name="description"
+        content="Servicios audiovisuales en Santander: video comercial, cubrimiento de eventos, fotografía y post-producción. Precios desde y cotización a medida." />
+    <link rel="icon" type="image/svg+xml" href="images/logo-icon.svg" />
+    <meta name="theme-color" content="#1d1915" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content="Vértice Visual" />
+    <meta property="og:title" content="Servicios — Vértice Visual" />
+    <meta property="og:description" content="Video comercial, eventos, fotografía y post-producción en Santander." />
+    <meta property="og:image" content="images/logo-vertice.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <style>
+        body { font-family: 'Work Sans', sans-serif; background-color: #1d1915; }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #c59a6d; transition: width .3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active { color: #c59a6d; }
+        .nav-link.active::after { width: 100%; }
+        .scroll-reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) { .scroll-reveal { opacity: 1; transform: none; transition: none; } }
+    </style>
+</head>
+
+<body class="text-white min-h-screen">
+
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-12 transition-all duration-300 backdrop-blur-md bg-background-dark/80">
+        <a href="index.html" class="flex items-center gap-2">
+            <img src="images/logo-icon.svg" alt="Vértice Visual" class="h-9 w-auto" />
+            <span class="text-white text-xl font-bold tracking-tight uppercase">Vértice Visual</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-10">
+            <a class="nav-link text-white/80 hover:text-primary text-sm font-medium tracking-widest uppercase transition-colors" href="index.html">Home</a>
+            <a class="nav-link text-white/80 hover:text-primary text-sm font-medium tracking-widest uppercase transition-colors" href="proyectos.html">Proyectos</a>
+            <a class="nav-link active text-white/80 hover:text-primary text-sm font-medium tracking-widest uppercase transition-colors" href="servicios.html">Servicios</a>
+            <a class="nav-link text-white/80 hover:text-primary text-sm font-medium tracking-widest uppercase transition-colors" href="rental.html">Rental</a>
+            <a class="nav-link text-white/80 hover:text-primary text-sm font-medium tracking-widest uppercase transition-colors" href="nosotros.html">Nosotros</a>
+            <a class="nav-link text-white/80 hover:text-primary text-sm font-medium tracking-widest uppercase transition-colors" href="contacto.html">Contacto</a>
+        </nav>
+        <button id="menu-toggle" class="md:hidden text-white" aria-label="Abrir menú">
+            <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+    </header>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-background-dark/98 flex-col items-center justify-center gap-8 hidden">
+        <button id="menu-close" class="absolute top-6 right-6 text-white" aria-label="Cerrar menú">
+            <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+        <nav class="flex flex-col items-center gap-8 mt-16">
+            <a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors" href="index.html">Home</a>
+            <a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors" href="proyectos.html">Proyectos</a>
+            <a class="text-primary text-2xl font-bold tracking-widest uppercase" href="servicios.html">Servicios</a>
+            <a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors" href="rental.html">Rental</a>
+            <a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors" href="nosotros.html">Nosotros</a>
+            <a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors" href="contacto.html">Contacto</a>
+        </nav>
+    </div>
+
+    <main>
+        <!-- Hero -->
+        <section class="pt-40 pb-20 px-6 md:px-12 text-center">
+            <p class="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-4">Servicios</p>
+            <h1 class="font-serif text-4xl md:text-6xl max-w-4xl mx-auto leading-tight">Todo lo que tu marca necesita para <span class="italic text-primary">contar su historia</span></h1>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto mt-6">De la idea a la entrega final, un solo equipo en Santander. Cada proyecto se cotiza según su alcance; estos son los puntos de partida.</p>
+        </section>
+
+        <!-- Servicios -->
+        <section class="px-6 md:px-12 pb-24">
+            <div id="servicios-grid" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+            <p class="max-w-7xl mx-auto mt-8 text-xs text-slate-500">Los precios “desde” son referenciales, en pesos colombianos, y pueden variar según duración, locaciones, equipo y tiempos de entrega. No incluyen IVA cuando aplique.</p>
+        </section>
+
+        <!-- Proceso -->
+        <section class="bg-petroleum py-24 px-6 md:px-12 scroll-reveal">
+            <div class="max-w-6xl mx-auto">
+                <p class="text-primary/70 font-bold uppercase tracking-[0.3em] text-xs mb-4 text-center">Cómo trabajamos</p>
+                <h2 class="font-serif text-3xl md:text-5xl text-center mb-16">Un proceso simple y ágil</h2>
+                <ol class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                    <li><span class="font-serif text-5xl text-primary/40">01</span><h3 class="text-lg font-bold mt-2 mb-2">Brief</h3><p class="text-white/70 text-sm leading-relaxed">Hablamos de tu objetivo, público y presupuesto. Respondemos en menos de 24 horas.</p></li>
+                    <li><span class="font-serif text-5xl text-primary/40">02</span><h3 class="text-lg font-bold mt-2 mb-2">Propuesta</h3><p class="text-white/70 text-sm leading-relaxed">Te enviamos una cotización clara con alcance, fechas y entregables.</p></li>
+                    <li><span class="font-serif text-5xl text-primary/40">03</span><h3 class="text-lg font-bold mt-2 mb-2">Producción</h3><p class="text-white/70 text-sm leading-relaxed">Preproducción, rodaje o sesión y edición, con avances para que apruebes.</p></li>
+                    <li><span class="font-serif text-5xl text-primary/40">04</span><h3 class="text-lg font-bold mt-2 mb-2">Entrega</h3><p class="text-white/70 text-sm leading-relaxed">Archivos finales listos para tus canales, con una ronda de ajustes incluida.</p></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="py-24 px-6 md:px-12 scroll-reveal">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="font-serif text-3xl md:text-4xl mb-10 text-center">Preguntas frecuentes</h2>
+                <div class="divide-y divide-white/10 border-y border-white/10">
+                    <details class="group py-5"><summary class="cursor-pointer font-medium flex justify-between items-center list-none">¿Cómo se define el precio final?<span class="material-symbols-outlined text-primary group-open:rotate-45 transition-transform">add</span></summary><p class="text-slate-400 mt-3 leading-relaxed">Según duración del proyecto, número de locaciones, equipo requerido, tiempo de edición y fecha de entrega. Con tu brief te enviamos una cotización cerrada.</p></details>
+                    <details class="group py-5"><summary class="cursor-pointer font-medium flex justify-between items-center list-none">¿Trabajan fuera de Bucaramanga?<span class="material-symbols-outlined text-primary group-open:rotate-45 transition-transform">add</span></summary><p class="text-slate-400 mt-3 leading-relaxed">Sí, en todo Santander y el resto del país. Los desplazamientos y alojamiento se incluyen en la cotización.</p></details>
+                    <details class="group py-5"><summary class="cursor-pointer font-medium flex justify-between items-center list-none">¿Puedo alquilar equipo sin contratar producción?<span class="material-symbols-outlined text-primary group-open:rotate-45 transition-transform">add</span></summary><p class="text-slate-400 mt-3 leading-relaxed">Claro. Mira el <a class="text-primary underline" href="rental.html">catálogo de Rental</a> y consulta disponibilidad por WhatsApp.</p></details>
+                    <details class="group py-5"><summary class="cursor-pointer font-medium flex justify-between items-center list-none">¿Cuánto tarda la entrega?<span class="material-symbols-outlined text-primary group-open:rotate-45 transition-transform">add</span></summary><p class="text-slate-400 mt-3 leading-relaxed">Depende del alcance; lo definimos en la propuesta. Para piezas cortas de redes solemos entregar en pocos días hábiles.</p></details>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-24 px-6 bg-petroleum flex flex-col items-center text-center scroll-reveal">
+            <h2 class="font-serif text-4xl md:text-5xl mb-6">¿Hablamos de tu proyecto?</h2>
+            <p class="text-white/70 mb-10 max-w-lg">Cuéntanos qué necesitas y te respondemos con una propuesta a tu medida.</p>
+            <a href="contacto.html" class="bg-primary text-background-dark font-bold px-10 py-4 uppercase tracking-[0.2em] text-sm hover:bg-primary/90 transition-colors">Pedir cotización</a>
+        </section>
+    </main>
+
+    <footer class="bg-background-dark border-t border-white/5 py-12 px-6 md:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-2">
+                <img src="images/logo-icon.svg" alt="Vértice Visual" class="h-7 w-auto" />
+                <span class="text-white text-lg font-bold tracking-tight uppercase">Vértice Visual</span>
+            </div>
+            <nav class="flex flex-wrap justify-center gap-8 text-white/40 text-xs tracking-widest uppercase">
+                <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="hover:text-primary transition-colors" href="proyectos.html">Proyectos</a>
+                <a class="hover:text-primary transition-colors" href="servicios.html">Servicios</a>
+                <a class="hover:text-primary transition-colors" href="rental.html">Rental</a>
+                <a class="hover:text-primary transition-colors" href="nosotros.html">Nosotros</a>
+                <a class="hover:text-primary transition-colors" href="contacto.html">Contacto</a>
+                <a class="hover:text-primary transition-colors" href="https://www.instagram.com/vertice.visual/" target="_blank" rel="noopener">Instagram</a>
+            </nav>
+            <p class="text-white/40 text-[10px] tracking-widest uppercase">© 2026 Vértice Visual. <a class="hover:text-primary" href="politica-datos.html">Política de datos</a></p>
+        </div>
+    </footer>
+
+    <a class="fixed bottom-8 right-8 w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform z-[100]"
+        href="https://wa.me/573195025967" aria-label="Escríbenos por WhatsApp" target="_blank" rel="noopener">
+        <svg class="w-7 h-7 text-background-dark" fill="currentColor" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.4 2.4-11.2 2.5-2.5 5.5-6.4 8.3-9.6 2.8-3.2 3.7-5.5 5.5-9.3 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+        </svg>
+    </a>
+
+    <script>
+        // ─────────────────────────────────────────────────────────────
+        // PRECIOS "DESDE" (COP). Edita solo estos valores.
+        // Mientras un valor sea null, la tarjeta muestra "Cotización a medida".
+        // Ejemplo: video: 1500000
+        // ─────────────────────────────────────────────────────────────
+        const PRECIOS = { video: null, eventos: null, foto: null, post: null };
+
+        const SERVICIOS = [
+            { id: 'video', formValue: 'video', icon: 'videocam', img: 'images/bts-moda.jpg', titulo: 'Video comercial',
+              desc: 'Spots, piezas corporativas y contenido de marca pensado para convertir.',
+              incluye: ['Guion y planeación de la pieza', 'Rodaje con equipo profesional', 'Edición, color y mezcla de audio', 'Formatos para redes y web'] },
+            { id: 'eventos', formValue: 'evento', icon: 'celebration', img: 'images/andes-epic-2.jpg', titulo: 'Cubrimiento de eventos',
+              desc: 'Foto y video de eventos deportivos, corporativos y culturales, como Andes Epic.',
+              incluye: ['Cobertura foto y video en sitio', 'Resumen audiovisual (aftermovie)', 'Galería de fotos editadas', 'Clips cortos para redes'] },
+            { id: 'foto', formValue: 'fotografia', icon: 'photo_camera', img: 'images/turim-dei.jpg', titulo: 'Fotografía',
+              desc: 'Turismo, producto, moda y gastronomía con una estética cinematográfica.',
+              incluye: ['Sesión con dirección de arte', 'Selección y retoque profesional', 'Entrega en alta y baja resolución', 'Licencia de uso comercial'] },
+            { id: 'post', formValue: 'post-produccion', icon: 'movie_edit', img: 'images/nido-1.jpg', titulo: 'Post-producción',
+              desc: 'Edición, corrección de color y motion para el material que ya tienes.',
+              incluye: ['Montaje y ritmo narrativo', 'Corrección y gradación de color', 'Subtítulos y gráficos animados', 'Una ronda de ajustes incluida'] },
+        ];
+
+        const fmt = n => '$' + n.toLocaleString('es-CO');
+        document.getElementById('servicios-grid').innerHTML = SERVICIOS.map(s => {
+            const p = PRECIOS[s.id];
+            const precio = p
+                ? `<p class="text-xs uppercase tracking-widest text-white/50">Desde</p><p class="font-serif text-3xl text-primary">${fmt(p)} <span class="text-sm text-white/50 font-sans">COP</span></p>`
+                : `<p class="font-serif text-2xl text-primary">Cotización a medida</p>`;
+            return `
+            <article class="group bg-white/[0.03] border border-white/10 hover:border-primary/40 transition-colors overflow-hidden flex flex-col">
+                <div class="relative aspect-[16/9] overflow-hidden">
+                    <img src="${s.img}" alt="${s.titulo}" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+                    <span class="material-symbols-outlined absolute top-4 left-4 text-primary text-3xl">${s.icon}</span>
+                </div>
+                <div class="p-8 flex flex-col flex-1">
+                    <h2 class="font-serif text-2xl mb-2">${s.titulo}</h2>
+                    <p class="text-slate-400 mb-6">${s.desc}</p>
+                    <ul class="space-y-2 mb-8 text-sm text-slate-300">
+                        ${s.incluye.map(i => `<li class="flex gap-2"><span class="material-symbols-outlined text-primary text-base">check</span>${i}</li>`).join('')}
+                    </ul>
+                    <div class="mt-auto flex items-end justify-between gap-4 flex-wrap">
+                        <div>${precio}</div>
+                        <a href="contacto.html?servicio=${s.formValue}" class="ghost-cta border border-primary/60 text-primary hover:bg-primary hover:text-background-dark transition-colors px-6 py-3 text-xs font-bold tracking-[0.2em] uppercase">Cotizar</a>
+                    </div>
+                </div>
+            </article>`;
+        }).join('');
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        document.getElementById('menu-toggle').addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); mobileMenu.classList.toggle('flex'); });
+        document.getElementById('menu-close').addEventListener('click', () => { mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex'); });
+
+        const observer = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

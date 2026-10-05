@@ -4,35 +4,26 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/svg+xml" href="images/logo-icon.svg" />
+    <meta name="theme-color" content="#1d1915" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content="Vértice Visual" />
+    <meta property="og:title" content="Vértice Visual — Producción Audiovisual en Santander" />
+    <meta property="og:description" content="Vértice Visual: aliados estratégicos en producción audiovisual en Santander. Convertimos visiones en activos visuales de alto impacto." />
+    <meta property="og:image" content="images/logo-vertice.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <title>Vértice Visual — Producción Audiovisual en Santander</title>
     <meta name="description"
         content="Vértice Visual: aliados estratégicos en producción audiovisual en Santander. Convertimos visiones en activos visuales de alto impacto." />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap"
         rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#c59a6d",
-                        "petroleum": "#264653",
-                        "background-light": "#f8f7f6",
-                        "background-dark": "#1d1915",
-                    },
-                    fontFamily: {
-                        "sans": ["Work Sans", "sans-serif"],
-                        "serif": ["Playfair Display", "Georgia", "serif"],
-                    },
-                },
-            },
-        }
-    </script>
+    <link rel="stylesheet" href="css/tailwind.css" />
     <style>
         body {
             font-family: 'Work Sans', sans-serif;
@@ -113,6 +104,8 @@
                 href="index.html">Home</a>
             <a class="nav-link text-white/80 hover:text-primary text-sm font-medium tracking-widest uppercase transition-colors"
                 href="proyectos.html">Proyectos</a>
+<a class="nav-link text-white/80 hover:text-primary text-sm font-medium tracking-widest uppercase transition-colors"
+                href="servicios.html">Servicios</a>
             <a class="nav-link text-white/80 hover:text-primary text-sm font-medium tracking-widest uppercase transition-colors"
                 href="rental.html">Rental</a>
             <a class="nav-link text-white/80 hover:text-primary text-sm font-medium tracking-widest uppercase transition-colors"
@@ -133,7 +126,7 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu"
         class="fixed inset-0 z-40 bg-background-dark/98 flex-col items-center justify-center gap-8 hidden">
-        <button id="menu-close" class="absolute top-6 right-6 text-white">
+        <button id="menu-close" class="absolute top-6 right-6 text-white" aria-label="Cerrar menú">
             <span class="material-symbols-outlined text-3xl">close</span>
         </button>
         <nav class="flex flex-col items-center gap-8 mt-16">
@@ -141,6 +134,8 @@
                 href="index.html">Home</a>
             <a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors"
                 href="proyectos.html">Proyectos</a>
+<a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors"
+                href="servicios.html">Servicios</a>
             <a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors"
                 href="rental.html">Rental</a>
             <a class="text-white text-2xl font-bold tracking-widest uppercase hover:text-primary transition-colors"
@@ -157,7 +152,7 @@
                 <div class="absolute inset-0 z-0">
                     <div class="absolute inset-0 bg-black/55 z-10"></div>
                     <img alt="Producción cinematográfica de alto nivel" class="w-full h-full object-cover"
-                        src="images/andes-epic-1.jpg" />
+                        src="images/andes-epic-1.jpg" fetchpriority="high" />
                 </div>
                 <div class="relative z-20 flex flex-col items-center justify-center text-center px-4">
                     <div class="mb-12 opacity-75">
@@ -227,7 +222,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Card 1 — Andes Epic Edición 2025 -->
                     <a href="proyectos.html" class="group relative aspect-[4/5] overflow-hidden cursor-pointer block">
-                        <img alt="Andes Epic Edición 2025"
+                        <img loading="lazy" decoding="async" alt="Andes Epic Edición 2025"
                             class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                             src="images/andes-epic-2.jpg" />
                         <div
@@ -240,7 +235,7 @@
                     </a>
                     <!-- Card 2 — Nido Cortometraje -->
                     <a href="proyectos.html" class="group relative aspect-[4/5] overflow-hidden cursor-pointer block">
-                        <img alt="Nido Cortometraje"
+                        <img loading="lazy" decoding="async" alt="Nido Cortometraje"
                             class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                             src="images/nido-1.jpg" />
                         <div
@@ -253,7 +248,7 @@
                     </a>
                     <!-- Card 3 — Turim Dei Hotel Boutique -->
                     <a href="proyectos.html" class="group relative aspect-[4/5] overflow-hidden cursor-pointer block">
-                        <img alt="Turim Dei Hotel Boutique"
+                        <img loading="lazy" decoding="async" alt="Turim Dei Hotel Boutique"
                             class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                             src="images/turim-dei.jpg" />
                         <div
@@ -289,6 +284,7 @@
                 <nav class="flex gap-8 text-white/40 text-xs tracking-widest uppercase">
                     <a class="hover:text-primary transition-colors" href="index.html">Home</a>
                     <a class="hover:text-primary transition-colors" href="proyectos.html">Proyectos</a>
+<a class="hover:text-primary transition-colors" href="servicios.html">Servicios</a>
                     <a class="hover:text-primary transition-colors" href="rental.html">Rental</a>
                     <a class="hover:text-primary transition-colors" href="nosotros.html">Nosotros</a>
                     <a class="hover:text-primary transition-colors" href="contacto.html">Contacto</a>
@@ -297,15 +293,17 @@
                     <a class="hover:text-primary transition-colors" href="https://www.instagram.com/vertice.visual/"
                         target="_blank" rel="noopener">Instagram</a>
                 </div>
-                <p class="text-white/40 text-[10px] tracking-widest uppercase">© 2024 Vértice Visual. Santander,
+                <p class="text-white/40 text-[10px] tracking-widest uppercase">© 2026 Vértice Visual. Santander,
                     Colombia.</p>
             </div>
         </footer>
+    <p class="text-center text-[10px] tracking-widest uppercase text-slate-500 pb-6 bg-background-dark"><a class="hover:text-primary transition-colors" href="politica-datos.html">Política de Tratamiento de Datos</a></p>
+
     </div>
 
     <!-- WhatsApp Float -->
     <a class="fixed bottom-8 right-8 w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform z-[100]"
-        href="https://wa.me/573195025967" title="Contáctanos por WhatsApp">
+        href="https://wa.me/573195025967" aria-label="Escríbenos por WhatsApp" target="_blank" rel="noopener" title="Contáctanos por WhatsApp">
         <svg class="w-7 h-7 text-background-dark" fill="currentColor" viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg">
             <path

@@ -20,17 +20,10 @@ desktop.ini
 *.suo
 *.user
 
-# Archivos multimedia pesados (superan límite de 100MB de GitHub)
-# Videos locales — quedan en disco, no en el repo
-public/videos/
-*.mp4
-*.mov
-*.avi
+# Material pesado y respaldos: viven solo en disco, fuera del sitio publicado
+# Clips .mp4 y las 650 fotos originales de Andes Epic
+_archivo-local/
+# Imágenes antes de optimizar
+_originales/
 
-# Galería de fotos Andes Epic (650 fotos de alta resolución)
-# Permanecen en disco local — solo el índice JSON se sube al repo
-public/images/andes-epic-etapa1/
-!public/images/andes-epic-etapa1/filelist.json
-
-# Selección web: 100 fotos más ligeras (~63 MB) — incluidas en el repo
-# public/images/andes-epic-web/  ← NO ignorar, se sube completa
+# Galería web de Andes Epic (100 fotos livianas) — SÍ se sube: public/images/andes-epic-web/

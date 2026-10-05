@@ -8,6 +8,8 @@ Sitio web oficial de **Vértice Visual**, productora audiovisual colombiana con 
 |------|-------------|
 | `/` | Inicio — Presentación y proyectos destacados |
 | `/proyectos.html` | Portafolio de proyectos |
+| `/servicios.html` | Servicios y precios "desde" (editar `PRECIOS` al final del archivo) |
+| `/politica-datos.html` | Política de Tratamiento de Datos (Ley 1581) |
 | `/rental.html` | Catálogo de equipos en alquiler |
 | `/nosotros.html` | Quiénes somos |
 | `/contacto.html` | Formulario de contacto |
@@ -21,6 +23,8 @@ Requiere [Node.js](https://nodejs.org/) instalado.
 # Solo ejecutar el servidor:
 node server.js
 ```
+
+Si cambias clases de Tailwind en los HTML: `npm install` una vez y luego `npm run build:css` (genera `public/css/tailwind.css`).
 
 Luego abrir el navegador en: [http://localhost:3000](http://localhost:3000)
 
@@ -43,9 +47,9 @@ vertice-visual/
 
 ## ✉️ Contacto
 
-- Instagram: [@verticevisual](https://www.instagram.com/verticevisual)
+- Instagram: [@vertice.visual](https://www.instagram.com/vertice.visual/)
 - Correo: vertice.visual.co@gmail.com
 
 ---
 
-© 2025 Vértice Visual. Todos los derechos reservados.
+© 2026 Vértice Visual. Todos los derechos reservados.
