@@ -69,8 +69,8 @@ const server = http.createServer((req, res) => {
       }
       return send(res, 500, {}, 'Server Error');
     }
-    // Páginas siempre frescas; recursos estáticos cacheables
-    const cache = ext === '.html' ? 'no-cache' : 'public, max-age=86400';
+    // HTML/CSS/JS siempre frescos; imágenes y demás recursos cacheables
+    const cache = ['.html', '.css', '.js'].includes(ext) ? 'no-cache' : 'public, max-age=86400';
     send(res, 200, {
       'Content-Type': mimeTypes[ext] || 'application/octet-stream',
       'Content-Length': data.length,

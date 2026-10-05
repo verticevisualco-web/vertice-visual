@@ -76,7 +76,7 @@
         <section class="pt-40 pb-20 px-6 md:px-12 text-center">
             <p class="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-4">Servicios</p>
             <h1 class="font-serif text-4xl md:text-6xl max-w-4xl mx-auto leading-tight">Todo lo que tu marca necesita para <span class="italic text-primary">contar su historia</span></h1>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto mt-6">De la idea a la entrega final, un solo equipo en Santander. Cada proyecto se cotiza según su alcance; estos son los puntos de partida.</p>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto mt-6">De la idea a la entrega final, un solo equipo en Santander. Cada proyecto se cotiza según su alcance; estos son los precios de partida.</p>
         </section>
 
         <!-- Servicios -->
@@ -150,9 +150,10 @@
         // ─────────────────────────────────────────────────────────────
         // PRECIOS "DESDE" (COP). Edita solo estos valores.
         // Mientras un valor sea null, la tarjeta muestra "Cotización a medida".
-        // Ejemplo: video: 1500000
         // ─────────────────────────────────────────────────────────────
-        const PRECIOS = { video: null, eventos: null, foto: null, post: null };
+        const PRECIOS = { video: 1200000, eventos: 2000000, foto: 200000, post: 200000, pack: 1800000 };
+        // Texto que acompaña al precio (antes y después de la cifra)
+        const PRECIO_TXT = { eventos: { antes: 'Evento deportivo desde' }, post: { despues: 'por minuto de video' }, pack: { despues: 'por mes' } };
 
         const SERVICIOS = [
             { id: 'video', formValue: 'video', icon: 'videocam', img: 'images/bts-moda.jpg', titulo: 'Video comercial',
@@ -167,13 +168,17 @@
             { id: 'post', formValue: 'post-produccion', icon: 'movie_edit', img: 'images/nido-1.jpg', titulo: 'Post-producción',
               desc: 'Edición, corrección de color y motion para el material que ya tienes.',
               incluye: ['Montaje y ritmo narrativo', 'Corrección y gradación de color', 'Subtítulos y gráficos animados', 'Una ronda de ajustes incluida'] },
+            { id: 'pack', formValue: 'contenido', icon: 'calendar_month', img: 'images/frame-video-1.jpg', titulo: 'Creación de contenido · Pack mensual',
+              desc: 'Un plan mensual de contenido para tus redes: producimos de forma constante para que tu marca nunca deje de publicar.',
+              incluye: ['Planeación mensual de contenidos', 'Jornada de grabación y fotografía', 'Edición de reels y piezas para redes', 'Entrega calendarizada cada mes'] },
         ];
 
         const fmt = n => '$' + n.toLocaleString('es-CO');
         document.getElementById('servicios-grid').innerHTML = SERVICIOS.map(s => {
             const p = PRECIOS[s.id];
+            const t = PRECIO_TXT[s.id] || {};
             const precio = p
-                ? `<p class="text-xs uppercase tracking-widest text-white/50">Desde</p><p class="font-serif text-3xl text-primary">${fmt(p)} <span class="text-sm text-white/50 font-sans">COP</span></p>`
+                ? `<p class="text-xs uppercase tracking-widest text-white/50">${t.antes || 'Desde'}</p><p class="font-serif text-3xl text-primary">${fmt(p)} <span class="text-sm text-white/50 font-sans">COP${t.despues ? ' · ' + t.despues : ''}</span></p>`
                 : `<p class="font-serif text-2xl text-primary">Cotización a medida</p>`;
             return `
             <article class="group bg-white/[0.03] border border-white/10 hover:border-primary/40 transition-colors overflow-hidden flex flex-col">
@@ -195,6 +200,13 @@
                 </div>
             </article>`;
         }).join('');
+        const grid = document.getElementById('servicios-grid');
+        if (grid.children.length % 2 === 1) {
+            const last = grid.lastElementChild;
+            last.classList.add('md:col-span-2', 'md:flex-row');
+            last.firstElementChild.classList.replace('aspect-[16/9]', 'md:aspect-auto');
+            last.firstElementChild.classList.add('md:w-1/2', 'aspect-[16/9]');
+        }
 
         const mobileMenu = document.getElementById('mobile-menu');
         document.getElementById('menu-toggle').addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); mobileMenu.classList.toggle('flex'); });
